@@ -11,7 +11,7 @@ import time
 import wave
 import audioop
 from concurrent.futures import ThreadPoolExecutor, as_completed
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from time import mktime
 from urllib.parse import urlencode
 from wsgiref.handlers import format_date_time
@@ -26,7 +26,7 @@ class AsrConfig:
     api_secret: str
     ws_host: str = "iat.xf-yun.com"
     ws_path: str = "/v1"
-    ws_scheme: str = "ws"
+    ws_scheme: str = "wss"
     chunk_duration_sec: float = 50.0
     overlap_sec: float = 0.8
     sample_rate: int = 16000
@@ -36,6 +36,8 @@ class AsrConfig:
     accent: str = "mandarin"
     frame_bytes: int = 1280
     frame_interval_sec: float = 0.04
+    frame_interval_scale: float = 0.35
+    fallback_frame_interval_scale: float = 1.0
     timeout_sec: int = 120
     max_workers: int = 10
     retries_per_chunk: int = 2
@@ -51,6 +53,10 @@ class AsrConfig:
         chunk_duration_sec = float(os.getenv("ASR_CHUNK_DURATION_SEC", str(cls.chunk_duration_sec)))
         overlap_sec = float(os.getenv("ASR_OVERLAP_SEC", str(cls.overlap_sec)))
         frame_interval_sec = float(os.getenv("ASR_FRAME_INTERVAL_SEC", str(cls.frame_interval_sec)))
+        frame_interval_scale = float(os.getenv("ASR_FRAME_INTERVAL_SCALE", str(cls.frame_interval_scale)))
+        fallback_frame_interval_scale = float(
+            os.getenv("ASR_FALLBACK_FRAME_INTERVAL_SCALE", str(cls.fallback_frame_interval_scale))
+        )
         timeout_sec = int(os.getenv("ASR_TIMEOUT_SEC", str(cls.timeout_sec)))
         max_workers = int(os.getenv("ASR_MAX_WORKERS", str(cls.max_workers)))
         retries_per_chunk = int(os.getenv("ASR_RETRIES_PER_CHUNK", str(cls.retries_per_chunk)))
@@ -66,6 +72,8 @@ class AsrConfig:
             chunk_duration_sec=max(1.0, chunk_duration_sec),
             overlap_sec=max(0.0, overlap_sec),
             frame_interval_sec=max(0.0, frame_interval_sec),
+            frame_interval_scale=max(0.05, min(1.0, frame_interval_scale)),
+            fallback_frame_interval_scale=max(0.2, min(1.5, fallback_frame_interval_scale)),
             timeout_sec=max(10, timeout_sec),
             max_workers=max(1, min(50, max_workers)),
             retries_per_chunk=max(0, retries_per_chunk),
@@ -149,6 +157,17 @@ def _split_wav(audio_path: str, config: AsrConfig) -> list[str]:
 
 
 def _transcribe_single_wav(audio_path: str, config: AsrConfig) -> str:
+    audio_duration_sec = 0.0
+    try:
+        with wave.open(audio_path, "rb") as wf:
+            fr = wf.getframerate()
+            nf = wf.getnframes()
+            audio_duration_sec = 0.0 if fr <= 0 else nf / fr
+    except Exception:
+        audio_duration_sec = 0.0
+
+    wait_timeout_sec = max(config.timeout_sec, int(audio_duration_sec * 3 + 20))
+
     url = _auth_url(config)
     parts: list[str] = []
     error_holder: dict[str, str] = {}
@@ -257,7 +276,10 @@ def _transcribe_single_wav(audio_path: str, config: AsrConfig) -> str:
                         error_holder["error"] = f"发送音频帧失败: {exc}"
                         done.set()
                         break
-                    time.sleep(config.frame_interval_sec)
+                    if status != status_last:
+                        # 云上网络波动下，允许“快于实时”发送以缩短整体耗时。
+                        send_interval = max(0.005, config.frame_interval_sec * config.frame_interval_scale)
+                        time.sleep(send_interval)
 
         threading.Thread(target=run, daemon=True).start()
 
@@ -269,10 +291,14 @@ def _transcribe_single_wav(audio_path: str, config: AsrConfig) -> str:
         daemon=True,
     )
     thread.start()
-    done.wait(timeout=config.timeout_sec)
+    done.wait(timeout=wait_timeout_sec)
     if "error" in error_holder:
         raise RuntimeError(error_holder["error"])
     if not done.is_set():
+        try:
+            ws.close()
+        except Exception:
+            pass
         raise TimeoutError("ASR 转写超时。")
     return "".join(parts).strip()
 
@@ -281,7 +307,15 @@ def _transcribe_chunk_with_retry(chunk_path: str, config: AsrConfig) -> str:
     last_error: Exception | None = None
     for attempt in range(config.retries_per_chunk + 1):
         try:
-            return _transcribe_single_wav(chunk_path, config)
+            cur_cfg = config
+            if attempt > 0:
+                # 重试时回退到更保守的发送节奏，提升成功率。
+                cur_cfg = replace(
+                    config,
+                    frame_interval_scale=config.fallback_frame_interval_scale,
+                    timeout_sec=max(config.timeout_sec, 180),
+                )
+            return _transcribe_single_wav(chunk_path, cur_cfg)
         except Exception as exc:  # noqa: BLE001
             last_error = exc
             if attempt < config.retries_per_chunk:
