@@ -1,0 +1,381 @@
+{
+  "analyzed_at": "2026-03-20T23:53:38+08:00",
+  "filename": "281a3d09efcb45d9a9bca21f37dbced0.mp3",
+  "total_touched": 21,
+  "total_mentioned": 46,
+  "keyword_count": 62,
+  "details": [
+    {
+      "keyword": "ladygaga",
+      "touched": true,
+      "mentioned": true,
+      "mentioned_confidence": 1.0
+    },
+    {
+      "keyword": "mayhem",
+      "touched": true,
+      "mentioned": true,
+      "mentioned_confidence": 1.0
+    },
+    {
+      "keyword": "disease",
+      "touched": true,
+      "mentioned": true,
+      "mentioned_confidence": 1.0
+    },
+    {
+      "keyword": "artpop",
+      "touched": true,
+      "mentioned": true,
+      "mentioned_confidence": 1.0
+    },
+    {
+      "keyword": "joanna",
+      "touched": false,
+      "mentioned": true,
+      "mentioned_confidence": 0.95
+    },
+    {
+      "keyword": "小丑2",
+      "touched": false,
+      "mentioned": true,
+      "mentioned_confidence": 0.95
+    },
+    {
+      "keyword": "科切拉",
+      "touched": true,
+      "mentioned": true,
+      "mentioned_confidence": 1.0
+    },
+    {
+      "keyword": "威尼斯电影节",
+      "touched": true,
+      "mentioned": true,
+      "mentioned_confidence": 1.0
+    },
+    {
+      "keyword": "格莱美",
+      "touched": true,
+      "mentioned": true,
+      "mentioned_confidence": 1.0
+    },
+    {
+      "keyword": "里约海滩",
+      "touched": true,
+      "mentioned": true,
+      "mentioned_confidence": 1.0
+    },
+    {
+      "keyword": "新加坡",
+      "touched": true,
+      "mentioned": true,
+      "mentioned_confidence": 1.0
+    },
+    {
+      "keyword": "巴黎奥运会",
+      "touched": true,
+      "mentioned": true,
+      "mentioned_confidence": 1.0
+    },
+    {
+      "keyword": "洛杉矶",
+      "touched": true,
+      "mentioned": true,
+      "mentioned_confidence": 1.0
+    },
+    {
+      "keyword": "spotify",
+      "touched": false,
+      "mentioned": false,
+      "mentioned_confidence": 0.65
+    },
+    {
+      "keyword": "itunes",
+      "touched": true,
+      "mentioned": true,
+      "mentioned_confidence": 1.0
+    },
+    {
+      "keyword": "网飞",
+      "touched": true,
+      "mentioned": true,
+      "mentioned_confidence": 1.0
+    },
+    {
+      "keyword": "吉尼斯纪录",
+      "touched": true,
+      "mentioned": true,
+      "mentioned_confidence": 1.0
+    },
+    {
+      "keyword": "拉斯维加斯",
+      "touched": true,
+      "mentioned": true,
+      "mentioned_confidence": 1.0
+    },
+    {
+      "keyword": "全球榜",
+      "touched": true,
+      "mentioned": true,
+      "mentioned_confidence": 1.0
+    },
+    {
+      "keyword": "shallow",
+      "touched": false,
+      "mentioned": false,
+      "mentioned_confidence": 0.0
+    },
+    {
+      "keyword": "jennie",
+      "touched": false,
+      "mentioned": true,
+      "mentioned_confidence": 0.78
+    },
+    {
+      "keyword": "山火慈善演出",
+      "touched": true,
+      "mentioned": true,
+      "mentioned_confidence": 1.0
+    },
+    {
+      "keyword": "音乐录像带",
+      "touched": true,
+      "mentioned": true,
+      "mentioned_confidence": 1.0
+    },
+    {
+      "keyword": "火星哥",
+      "touched": true,
+      "mentioned": true,
+      "mentioned_confidence": 1.0
+    },
+    {
+      "keyword": "社交平台发酵",
+      "touched": false,
+      "mentioned": true,
+      "mentioned_confidence": 0.88
+    },
+    {
+      "keyword": "短视频传播",
+      "touched": false,
+      "mentioned": true,
+      "mentioned_confidence": 0.92
+    },
+    {
+      "keyword": "翻身仗",
+      "touched": true,
+      "mentioned": true,
+      "mentioned_confidence": 1.0
+    },
+    {
+      "keyword": "音乐事业回暖",
+      "touched": false,
+      "mentioned": true,
+      "mentioned_confidence": 0.95
+    },
+    {
+      "keyword": "商业低谷",
+      "touched": false,
+      "mentioned": true,
+      "mentioned_confidence": 0.92
+    },
+    {
+      "keyword": "跨界发展",
+      "touched": false,
+      "mentioned": true,
+      "mentioned_confidence": 0.88
+    },
+    {
+      "keyword": "多领域发展",
+      "touched": false,
+      "mentioned": true,
+      "mentioned_confidence": 0.87
+    },
+    {
+      "keyword": "流媒体神曲",
+      "touched": false,
+      "mentioned": true,
+      "mentioned_confidence": 0.9
+    },
+    {
+      "keyword": "自然发酵",
+      "touched": true,
+      "mentioned": true,
+      "mentioned_confidence": 1.0
+    },
+    {
+      "keyword": "全网热议",
+      "touched": false,
+      "mentioned": true,
+      "mentioned_confidence": 0.9
+    },
+    {
+      "keyword": "演唱会破圈",
+      "touched": false,
+      "mentioned": true,
+      "mentioned_confidence": 0.92
+    },
+    {
+      "keyword": "票房失利",
+      "touched": false,
+      "mentioned": true,
+      "mentioned_confidence": 0.92
+    },
+    {
+      "keyword": "新专辑宣发",
+      "touched": false,
+      "mentioned": true,
+      "mentioned_confidence": 0.96
+    },
+    {
+      "keyword": "全球热单",
+      "touched": false,
+      "mentioned": true,
+      "mentioned_confidence": 0.93
+    },
+    {
+      "keyword": "高规格舞台",
+      "touched": false,
+      "mentioned": true,
+      "mentioned_confidence": 0.95
+    },
+    {
+      "keyword": "顶级现场表演",
+      "touched": false,
+      "mentioned": true,
+      "mentioned_confidence": 0.94
+    },
+    {
+      "keyword": "泰勒斯威夫特",
+      "touched": false,
+      "mentioned": false,
+      "mentioned_confidence": 0.0
+    },
+    {
+      "keyword": "碧昂丝",
+      "touched": false,
+      "mentioned": false,
+      "mentioned_confidence": 0.0
+    },
+    {
+      "keyword": "周杰伦",
+      "touched": false,
+      "mentioned": false,
+      "mentioned_confidence": 0.0
+    },
+    {
+      "keyword": "奥斯卡",
+      "touched": false,
+      "mentioned": false,
+      "mentioned_confidence": 0.0
+    },
+    {
+      "keyword": "金球奖",
+      "touched": false,
+      "mentioned": false,
+      "mentioned_confidence": 0.0
+    },
+    {
+      "keyword": "戛纳电影节",
+      "touched": false,
+      "mentioned": true,
+      "mentioned_confidence": 0.95
+    },
+    {
+      "keyword": "英雄联盟",
+      "touched": false,
+      "mentioned": false,
+      "mentioned_confidence": 0.0
+    },
+    {
+      "keyword": "原神",
+      "touched": false,
+      "mentioned": false,
+      "mentioned_confidence": 0.0
+    },
+    {
+      "keyword": "马斯克",
+      "touched": false,
+      "mentioned": false,
+      "mentioned_confidence": 0.0
+    },
+    {
+      "keyword": "OpenAI",
+      "touched": false,
+      "mentioned": false,
+      "mentioned_confidence": 0.0
+    },
+    {
+      "keyword": "ChatGPT",
+      "touched": false,
+      "mentioned": false,
+      "mentioned_confidence": 0.0
+    },
+    {
+      "keyword": "人工智能",
+      "touched": false,
+      "mentioned": false,
+      "mentioned_confidence": 0.0
+    },
+    {
+      "keyword": "区块链",
+      "touched": false,
+      "mentioned": false,
+      "mentioned_confidence": 0.0
+    },
+    {
+      "keyword": "ladygogo",
+      "touched": false,
+      "mentioned": true,
+      "mentioned_confidence": 0.98
+    },
+    {
+      "keyword": "joker3",
+      "touched": false,
+      "mentioned": false,
+      "mentioned_confidence": 0.62
+    },
+    {
+      "keyword": "格莱美奖杯榜",
+      "touched": false,
+      "mentioned": true,
+      "mentioned_confidence": 0.93
+    },
+    {
+      "keyword": "里约奥运会",
+      "touched": false,
+      "mentioned": true,
+      "mentioned_confidence": 0.96
+    },
+    {
+      "keyword": "威尼斯双年展",
+      "touched": false,
+      "mentioned": true,
+      "mentioned_confidence": 0.92
+    },
+    {
+      "keyword": "公告牌中国榜",
+      "touched": false,
+      "mentioned": true,
+      "mentioned_confidence": 0.8
+    },
+    {
+      "keyword": "新加坡巡演官宣失败",
+      "touched": false,
+      "mentioned": false,
+      "mentioned_confidence": 0.0
+    },
+    {
+      "keyword": "巴西足球比赛",
+      "touched": false,
+      "mentioned": true,
+      "mentioned_confidence": 0.92
+    },
+    {
+      "keyword": "网飞电影首映礼",
+      "touched": false,
+      "mentioned": true,
+      "mentioned_confidence": 0.76
+    }
+  ]
+}
