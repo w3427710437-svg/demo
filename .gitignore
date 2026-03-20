@@ -1,0 +1,21 @@
+# Secrets
+demo/.env
+.env
+*.env
+
+# Local caches
+demo/.cache/
+__pycache__/
+*.pyc
+
+# Large/local media
+demo/*.mp3
+demo/*.wav
+demo/*.m4a
+demo/*.pcm
+
+# OS/editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

@@ -1,0 +1,5 @@
+streamlit
+websocket-client
+python-dotenv
+openai
+streamlit-mic-recorder
