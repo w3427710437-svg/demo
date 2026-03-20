@@ -6,6 +6,7 @@ import re
 from typing import Any
 
 from asr_service import transcribe_audio
+from asr_remote_service import transcribe_audio_via_remote_backend
 from audio_preprocess import write_upload_to_wav
 from keyword_equiv_service import expand_keyword_aliases
 from semantic_service import score_mentioned
@@ -76,7 +77,11 @@ def analyze_audio_and_keywords(
         duration_sec = _wav_duration_seconds(wav_path)
         if duration_sec > 1800:
             raise ValueError("语音时长超过30分钟，无法执行。")
-        asr_result = transcribe_audio(wav_path)
+        use_remote_asr = os.getenv("ASR_BACKEND_URL", "").strip()
+        if use_remote_asr:
+            asr_result = transcribe_audio_via_remote_backend(wav_path)
+        else:
+            asr_result = transcribe_audio(wav_path)
     finally:
         for path in cleanup_paths:
             try:

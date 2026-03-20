@@ -175,6 +175,32 @@ streamlit run app.py --server.address 0.0.0.0 --server.port 8501
 - 密钥使用环境变量或平台 Secrets 注入；
 - 上线前完成限流、鉴权、日志与告警。
 
+### 6.4 远端 ASR 加速（推荐）
+当 Streamlit Cloud 上 ASR 明显慢于本地时，建议把 ASR 放到你自己的同地域后端服务，Streamlit 只做前端展示与结果计算编排。
+
+可选环境变量：
+- `ASR_BACKEND_URL`：远端 ASR HTTP 接口地址（配置后优先走远端）
+- `ASR_BACKEND_TOKEN`：远端接口鉴权 token（可选）
+- `ASR_BACKEND_TIMEOUT_SEC`：远端调用超时秒数（默认 300）
+
+接口约定（POST JSON）：
+```json
+{
+  "audio_base64": "<wav-base64>",
+  "filename": "xxx.wav",
+  "content_type": "audio/wav"
+}
+```
+
+返回约定（JSON）：
+```json
+{
+  "text": "转写全文",
+  "language": "zh",
+  "segments": []
+}
+```
+
 ---
 
 ## 附录A：环境变量（当前版本）
